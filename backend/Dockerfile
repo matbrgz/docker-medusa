@@ -1,8 +1,12 @@
-FROM node:latest
+FROM node:18.15.0
+
+ENV NODE_ENV=development
+
+EXPOSE 9000
 
 WORKDIR /app/medusa
 
-COPY package.json .
+COPY package*.json ./
 
 RUN rm -rf node_modules
 
@@ -16,14 +20,8 @@ RUN npm install -g @medusajs/medusa-cli@latest
 
 RUN npm install
 
-# RUN medusa migrations run
-
-# RUN medusa develop
-
 COPY . .
 
 COPY develop.sh .
-
-RUN ls
 
 ENTRYPOINT ["./develop.sh", "develop"]

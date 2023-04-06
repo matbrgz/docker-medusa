@@ -18,8 +18,7 @@
     "watch": "tsc --watch",
     "test": "jest",
     "seed": "medusa seed -f ./data/seed.json",
-    "start": "yarn build && medusa start",
-    "build:admin": "medusa-admin build"
+    "start": "yarn build && medusa start"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.21.4",

@@ -2,6 +2,6 @@
 
 npm run build &> /dev/null
 
-medusa migrations run
+npm run seed
 
-medusa $1
+npm run $1

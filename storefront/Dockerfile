@@ -1,8 +1,12 @@
-FROM node:latest
+FROM node:18.15.0
+
+ENV NODE_ENV=development
+
+EXPOSE 8000
 
 WORKDIR /app/storefront
 
-COPY package.json .
+COPY package*.json .
 
 RUN rm -rf node_modules
 
@@ -18,6 +22,8 @@ RUN npm install
 
 COPY . .
 
-COPY run.sh .
+RUN npm run build &> /dev/null
 
-ENTRYPOINT ["./run.sh", "dev"]
+COPY develop.sh .
+
+ENTRYPOINT ["./develop.sh", "develop"]

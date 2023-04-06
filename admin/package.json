@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@medusajs/admin": "^2.0.0"
+  },
+  "scripts": {
+    "build": "medusa-admin build",
+    "dev": "medusa-admin dev",
+    "develop": "medusa-admin dev",
+    "seed": "medusa user --email some@email.com --password some-password"
+  }
+}
