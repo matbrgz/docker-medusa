@@ -14,11 +14,11 @@
   ],
   "scripts": {
     "clean": "./node_modules/.bin/rimraf dist",
-    "build": "yarn run clean && tsc -p tsconfig.json",
+    "build": "npm run clean && tsc -p tsconfig.json",
     "watch": "tsc --watch",
     "test": "jest",
     "seed": "medusa seed -f ./data/seed.json",
-    "start": "yarn build && medusa start"
+    "start": "medusa start"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.21.4",
