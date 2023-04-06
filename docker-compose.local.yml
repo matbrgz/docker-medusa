@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  backend:
+    image: medusa-backend:0.0.1
+    container_name: medusa-server
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
+      REDIS_URL: redis://cache
+      NODE_ENV: development
+      JWT_SECRET: some_jwt_secret
+      COOKIE_SECRET: some_cookie_secret
+      PORT: 9000
+      STORE_CORS: http://localhost:8000
+      ADMIN_CORS: http://localhost:7000
+    ports:
+      - "9000:9000"
+
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa-docker
+
+  redis:
+    image: redis
+    container_name: cache
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    image: admin:test
+    depends_on:
+      - backend
+    container_name: medusa-admin
+    environment:
+      NODE_OPTIONS: --openssl-legacy-provider
+    ports:
+      - "7000:7000"
+
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile
+    image: storefront:test
+    container_name: medusa-storefront
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"

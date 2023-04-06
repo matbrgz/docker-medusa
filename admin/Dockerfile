@@ -14,7 +14,7 @@ RUN npm install sharp
 
 RUN npm install -g gatsby-cli
 
-RUN npm install --loglevel=error
+RUN npm install
 
 RUN npm run build &> /dev/null
 
