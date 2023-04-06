@@ -1,7 +1,5 @@
 FROM node:18.15.0
 
-ENV NODE_ENV=development
-
 EXPOSE 9000
 
 WORKDIR /app/medusa
@@ -17,8 +15,6 @@ RUN apt-get install -y python
 RUN npm install -g npm@latest
 
 RUN npm install -g @medusajs/medusa-cli@latest
-
-RUN npm install
 
 COPY . .
 

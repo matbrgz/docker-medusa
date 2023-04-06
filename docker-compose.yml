@@ -55,7 +55,6 @@ services:
     ports:
       - "7000:7000"
       - "7001:7001"
-    restart: always
     environment:
       NODE_ENV: development
       NODE_OPTIONS: --openssl-legacy-provider
